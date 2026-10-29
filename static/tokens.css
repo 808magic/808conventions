@@ -1,0 +1,163 @@
+/* ─────────────────────────────────────────────────────────────────
+   808 Magic Store — Design Tokens v2「808 Rings」
+   三個圓 · 小大小構圖 · 8px 系統 · 平面無模糊陰影
+   ─────────────────────────────────────────────────────────────────
+   使用方式
+   • 網頁：在全站樣式最上方 @import 這個檔案，之後只用 --m8-* 變數。
+   • 印刷：顏色請看下方 PRINT 區塊的 CMYK；HEX 只給螢幕用。
+   • 完整規範與示範：808-style-guide.html；必須遵守的規則：808-style-rules.md
+   • 前綴 --m8-（Magic 808）。
+   ───────────────────────────────────────────────────────────────── */
+
+
+:root{
+  /* ── 色彩 ───────────────────────────────────────────── */
+  /* 主色：取自官方 logo（#F39800 = CMYK 0/50/100/0） */
+  --m8-orange:        #F39800;   /* 大面積底色、logo、主要按鈕 */
+  --m8-orange-deep:   #D17F00;   /* 按下狀態、橘色上的疊層 */
+  --m8-orange-ink:    #A85A00;   /* 白／奶油底上的「橘色文字」（5.1:1） */
+  --m8-orange-glow:   #FFB547;   /* 午夜靛底上的亮橘字、光暈 */
+  --m8-cream:         #FFF4E0;   /* 次要底色、資訊區塊 */
+
+  /* 輔色：午夜靛，取代純黑，代表夜晚與舞台後方 */
+  --m8-midnight:      #1B1530;
+  --m8-midnight-2:    #2A2347;   /* 午夜靛底上的區塊 */
+
+  /* 亮點色：只能小面積（標籤、星點、單一重點），不可當底色 */
+  --m8-card-red:      #D62F33;   /* 撲克牌紅 */
+  --m8-spark:         #FFD84D;   /* 星火金 */
+
+  /* 中性色：帶一點靛色偏移 */
+  --m8-paper:         #FFFFFF;
+  --m8-ink:           #1B1530;   /* = midnight */
+  --m8-ink-soft:      #4B4560;   /* 次要文字（9:1） */
+  --m8-ink-mute:      #76718A;   /* 說明、註記（4.7:1） */
+  --m8-line:          #E9E1D3;   /* 細線、分隔 */
+  --m8-on-dark-soft:  #C9C3DA;   /* 午夜靛底上的次要文字 */
+
+  /* ── 字體 ───────────────────────────────────────────── */
+  --m8-font-en:   'Urbanist', 'Chiron GoRound TC', sans-serif;  /* 英文標題與內文 */
+  --m8-font-tc:   'Chiron GoRound TC', sans-serif;              /* 中文標題與內文 */
+  --m8-font-data: 'DM Mono', ui-monospace, monospace;                           /* 日期、時間、編號 */
+
+  /* 字級：全部是 8 的倍數（12 是唯一例外，給最小註記） */
+  --m8-size-12:  12px;   /* 註記、標籤 */
+  --m8-size-16:  16px;   /* 內文 */
+  --m8-size-24:  24px;   /* 小標 */
+  --m8-size-32:  32px;   /* 段落標題 */
+  --m8-size-48:  48px;   /* 章節標題 */
+  --m8-size-64:  64px;   /* 主標 */
+  --m8-size-96:  96px;   /* 大會主視覺 */
+  --m8-size-128: 128px;  /* 年份、超大數字 */
+
+  /* ── 8px 系統 ─────────────────────────────────────────── */
+  --m8-u:   8px;                          /* 基本單位：所有間距 = u × 整數 */
+  --m8-sp-1: 8px;  --m8-sp-2: 16px; --m8-sp-3: 24px; --m8-sp-4: 32px;
+  --m8-sp-6: 48px; --m8-sp-8: 64px; --m8-sp-12: 96px; --m8-sp-16: 128px;
+  --m8-grid-cols:   8;                    /* 8 欄網格 */
+  --m8-grid-gutter: 24px;
+  --m8-max:         1152px;               /* 內容最大寬 = 8 × 144 */
+
+  /* ── 形狀 ── 只有兩種：8px 圓角矩形、正圓 */
+  --m8-radius:  8px;
+  --m8-circle:  50%;
+
+  /* ── 深度 ── 不用模糊陰影；用「疊牌」實色位移 */
+  --m8-stack:        8px 8px 0 var(--m8-midnight);
+  --m8-stack-orange: 8px 8px 0 var(--m8-orange);
+  --m8-stack-sm:     4px 4px 0 var(--m8-midnight);
+
+  /* ── 比例 ── */
+  --m8-ratio-card:  63 / 88;   /* 撲克牌 63×88mm：人物照、卡片 */
+  --m8-small-big:   0.6;       /* 小大小構圖：小圓直徑 = 大圓 × 0.6（取自 logo 的 8 與 0） */
+
+  /* ── 動態 ── */
+  --m8-ease:       cubic-bezier(.2, .8, .2, 1);
+  --m8-ease-pop:   cubic-bezier(.34, 1.56, .64, 1);
+  --m8-dur-1:      160ms;   /* hover、按下 */
+  --m8-dur-2:      320ms;   /* 一般轉場 */
+  --m8-dur-reveal: 640ms;   /* 圓形展開（主角專用） */
+}
+
+/* ── 多國語言字體 ── 英文 Urbanist、中文 Chiron GoRound TC 不支援的文字，用同風格的補充字體
+   日文 Zen Maru Gothic（圓體）・韓文 Gothic A1・俄文 Jost（幾何，接近 Urbanist）
+   頁面需設定 <html lang="ja"> 等，並另外載入對應的 Google Fonts。 */
+html:lang(en), html:lang(es), html:lang(fr){ --m8-font-tc: 'Urbanist', 'Chiron GoRound TC', sans-serif; }
+html:lang(ja){ --m8-font-en: 'Urbanist', 'Zen Maru Gothic', sans-serif; --m8-font-tc: 'Zen Maru Gothic', 'Urbanist', sans-serif; }
+html:lang(ko){ --m8-font-en: 'Urbanist', 'Gothic A1', sans-serif; --m8-font-tc: 'Gothic A1', 'Urbanist', sans-serif; }
+html:lang(ru){ --m8-font-en: 'Urbanist', 'Jost', sans-serif; --m8-font-tc: 'Jost', 'Urbanist', sans-serif; }
+
+/* ─────────────────────────────────────────────────────────────────
+   PRINT（印刷用，CSS 不會讀到）
+   808 Orange   C0  M50 Y100 K0   ≈ PANTONE 1375 C（需打樣確認）
+   Midnight     C85 M85 Y40  K55  ≈ PANTONE 276 C（需打樣確認）
+   Cream        C0  M5  Y15  K0
+   Card Red     C10 M95 Y85  K0
+   Spark Gold   C0  M15 Y75  K0
+   ───────────────────────────────────────────────────────────────── */
+
+/* ── 基本設定 ── */
+*, *::before, *::after{ box-sizing: border-box; }
+body{
+  margin: 0;
+  font-family: var(--m8-font-en);
+  font-weight: 500;
+  font-size: var(--m8-size-16);
+  line-height: 1.75;              /* 16 × 1.75 = 28 → 對齊 4px 半格 */
+  color: var(--m8-ink);
+  background: var(--m8-paper);
+  -webkit-font-smoothing: antialiased;
+}
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   元件基礎（示範見 808-style-guide.html 第 7 章）
+   ───────────────────────────────────────────────────────────────── */
+
+/* 標題：英文 900 全大寫；中文 900 */
+.m8-title-en{ font-family: var(--m8-font-en); font-weight: 900; text-transform: uppercase; letter-spacing: -.02em; line-height: .92; }
+.m8-title-tc{ font-family: var(--m8-font-tc); font-weight: 900; line-height: 1.2; }
+.m8-kicker  { font-family: var(--m8-font-data); font-size: var(--m8-size-12); letter-spacing: .08em; text-transform: uppercase; }
+.m8-data    { font-family: var(--m8-font-data); font-variant-numeric: tabular-nums; }
+
+/* 按鈕：8px 圓角矩形，高 48px；按下時疊牌位移消失 */
+.m8-btn{
+  display: inline-flex; align-items: center; gap: var(--m8-sp-1);
+  height: 48px; padding: 0 var(--m8-sp-3);
+  border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius);
+  font: 800 16px/1 var(--m8-font-en); cursor: pointer; text-decoration: none;
+  box-shadow: var(--m8-stack-sm);
+  transition: transform var(--m8-dur-1) var(--m8-ease), box-shadow var(--m8-dur-1) var(--m8-ease);
+}
+.m8-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--m8-midnight); }
+.m8-btn:active{ transform: translate(4px, 4px); box-shadow: 0 0 0 var(--m8-midnight); }
+.m8-btn--orange{ background: var(--m8-orange); color: var(--m8-midnight); }
+.m8-btn--paper { background: var(--m8-paper);  color: var(--m8-midnight); }
+.m8-btn--night { background: var(--m8-midnight); color: var(--m8-paper); border-color: var(--m8-orange); box-shadow: 4px 4px 0 var(--m8-orange); }
+
+/* 圓形按鈕／日期章：直徑 48 的倍數 */
+.m8-disc{ display: grid; place-items: center; aspect-ratio: 1; border-radius: var(--m8-circle); }
+
+/* 標籤：8px 圓角，分類用 */
+.m8-tag{ display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: var(--m8-radius); font: 800 12px/20px var(--m8-font-en); letter-spacing: .04em; }
+
+/* 圓環分隔線 ○────○ */
+.m8-ring-rule{ position: relative; height: 2px; background: currentColor; margin-inline: 6px; }
+.m8-ring-rule::before, .m8-ring-rule::after{ content: ""; position: absolute; top: -5px; width: 12px; height: 12px; border: 2px solid currentColor; border-radius: 50%; background: var(--m8-paper); }
+.m8-ring-rule::before{ left: -12px; }
+.m8-ring-rule::after { right: -12px; }
+
+/* 圓形裁切（人物、主視覺） */
+.m8-crop-circle{ aspect-ratio: 1; border-radius: var(--m8-circle); overflow: hidden; object-fit: cover; }
+
+/* 圓形展開進場 */
+@keyframes m8-iris{ from{ clip-path: circle(0% at 50% 50%); } to{ clip-path: circle(75% at 50% 50%); } }
+.m8-reveal{ animation: m8-iris var(--m8-dur-reveal) var(--m8-ease) both; }
+
+/* 星火閃爍 */
+@keyframes m8-twinkle{ 0%,100%{ transform: scale(.55) rotate(0); opacity: .45; } 50%{ transform: scale(1) rotate(45deg); opacity: 1; } }
+
+/* 圓環慢轉（裝飾用） */
+@keyframes m8-spin{ to{ transform: rotate(360deg); } }
