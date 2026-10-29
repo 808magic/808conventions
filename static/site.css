@@ -61,7 +61,9 @@ h1, h2, h3{ text-wrap: balance; }
 .nav__menu[aria-expanded="true"] i:nth-child(1){ transform: translateY(7px) rotate(45deg); }
 .nav__menu[aria-expanded="true"] i:nth-child(2){ opacity: 0; }
 .nav__menu[aria-expanded="true"] i:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
-.menu{ border-top: 2px solid var(--m8-midnight); background: var(--m8-paper); padding-block: var(--m8-sp-2) var(--m8-sp-4); }
+.menu{ border-top: 2px solid var(--m8-midnight); background: var(--m8-paper); padding-block: var(--m8-sp-2) var(--m8-sp-4);
+  /* 選單比螢幕高時可以在選單內往下滑（扣掉上方導覽列的高度） */
+  max-height: calc(100dvh - var(--nav-h, 72px)); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 .menu a{ display: grid; grid-template-columns: 40px 1fr auto; align-items: baseline; gap: 8px; padding: 12px 0; border-bottom: 1px dashed var(--m8-line); text-decoration: none; }
 .menu b{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 24px; }
 .menu .m8-data{ font-size: 12px; color: var(--m8-ink-mute); }
@@ -487,10 +489,6 @@ a.gcard:hover .portrait{ box-shadow: 0 0 0 6px var(--m8-paper), 0 0 0 8px var(--
 .lang__menu a{ display: block; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: 15px; }
 .lang__menu a:hover{ background: var(--m8-cream); }
 .lang__menu a[aria-current="true"]{ background: var(--m8-orange); }
-.menu__langs-h{ font-size: 11px; color: var(--m8-ink-mute); letter-spacing: .06em; margin: var(--m8-sp-3) 0 var(--m8-sp-1); }
-.menu__langs{ display: flex; flex-wrap: wrap; gap: 8px; }
-.menu__langs a{ display: block; padding: 8px 14px; border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); text-decoration: none; font-weight: 800; font-size: 14px; }
-.menu__langs a[aria-current="true"]{ background: var(--m8-orange); }
 @media (max-width: 640px){
   .lang__btn span{ display: none; }
   .lang__btn{ width: 48px; height: 48px; padding: 0; justify-content: center; }
@@ -542,3 +540,15 @@ html.m8-locked .gate{ display: grid; place-items: center; min-height: 100vh; pad
 .gate input:focus{ outline: none; box-shadow: var(--m8-stack-sm); }
 .gate .gate__error{ color: var(--m8-card-red); font-weight: 800; font-size: 14px; }
 .gate .m8-btn{ justify-content: center; margin-top: 4px; }
+
+/* 808 新品：撲克牌比例卡片 */
+.prods{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--m8-sp-3); }
+.prod{ border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-paper); box-shadow: var(--m8-stack-sm); padding: var(--m8-sp-2); }
+.prod__photo{ display: grid; place-items: center; aspect-ratio: 63 / 88; border-radius: var(--m8-radius); overflow: hidden; background: var(--m8-cream); }
+.prod__photo img{ width: 100%; height: 100%; object-fit: cover; }
+.prod__badge{ width: 40%; }
+.prod__no{ display: block; margin-top: var(--m8-sp-2); font-size: 12px; color: var(--m8-orange-ink); }
+.prod h3{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 24px; line-height: 1.3; margin-top: 4px; }
+.prod p{ margin-top: var(--m8-sp-1); color: var(--m8-ink-soft); }
+@media (max-width: 900px){ .prods{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px){ .prods{ grid-template-columns: 1fr; } }

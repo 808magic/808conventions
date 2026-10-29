@@ -7,6 +7,8 @@ const menu = document.getElementById('menu');
 if (menuBtn && menu) {
   menuBtn.addEventListener('click', () => {
     const open = menuBtn.getAttribute('aria-expanded') === 'true';
+    // 選單的可捲動高度 = 螢幕高度 − 導覽列高度（在選單展開前量）
+    if (!open) document.documentElement.style.setProperty('--nav-h', document.querySelector('.nav__in').getBoundingClientRect().height + 'px');
     menuBtn.setAttribute('aria-expanded', String(!open));
     menuBtn.setAttribute('aria-label', open ? body.dataset.menuOpen : body.dataset.menuClose);
     menu.hidden = open;
