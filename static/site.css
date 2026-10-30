@@ -563,3 +563,39 @@ html.m8-locked .gate{ display: grid; place-items: center; min-height: 100vh; pad
 .how__notes{ margin-top: var(--m8-sp-3); display: grid; gap: 6px; color: var(--m8-on-dark-soft); padding-left: 1.2em; }
 .ccat__rules{ margin-top: 8px; padding-left: 1.1em; font-size: 14px; line-height: 1.5; display: grid; gap: 2px; overflow-wrap: anywhere; }
 @media (max-width: 760px){ .how{ grid-template-columns: 1fr; } }
+
+/* ── 場地：簡化示意圖、樓層、官方平面圖 ── */
+.vplan{ display: grid; grid-template-columns: 6fr 5fr; gap: var(--m8-sp-4); align-items: start; }
+.vplan__map{ display: grid; gap: 8px; }
+.vsvg{ width: 100%; height: auto; display: block; background: var(--m8-paper); border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); }
+.vsvg text{ font-family: var(--m8-font-tc); font-weight: 700; font-size: 14px; fill: var(--m8-midnight); }
+.vsvg__site{ fill: var(--m8-cream); stroke: var(--m8-midnight); stroke-width: 2; stroke-linejoin: round; }
+.vsvg__road{ fill: var(--m8-midnight); }
+.vsvg .vsvg__road-t{ fill: var(--m8-paper); font-size: 13px; }
+.vsvg__pond{ fill: #bcd3e0; stroke: var(--m8-midnight); stroke-width: 1.5; }
+.vsvg__lawn{ fill: #cfe1b9; stroke: var(--m8-midnight); stroke-width: 1.5; }
+.vsvg__bldg{ fill: var(--m8-paper); stroke: var(--m8-midnight); stroke-width: 1.5; }
+.vsvg__hall{ fill: var(--m8-orange); stroke: var(--m8-midnight); stroke-width: 3; }
+.vsvg .vsvg__hall-t{ font-weight: 900; font-size: 15px; }
+.vsvg .vsvg__hall-f{ font-size: 13px; }
+.vsvg__n path, .vsvg__n text{ fill: var(--m8-midnight); }
+.vsvg .vsvg__n text{ font-family: var(--m8-font-en); font-weight: 900; }
+.vplan__stack{ display: grid; gap: var(--m8-sp-2); }
+.vplan__hall{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 22px; }
+.vfloor{ display: grid; grid-template-columns: 56px minmax(0, 1fr); border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); overflow: hidden; background: var(--m8-paper); }
+.vfloor__n{ background: var(--m8-midnight); color: var(--m8-orange); font: 900 22px/1 var(--m8-font-en); display: grid; place-items: center; }
+.vfloor__rooms{ display: grid; }
+.vroom{ padding: 14px 16px; display: grid; gap: 8px; }
+.vroom + .vroom{ border-top: 2px dashed var(--m8-midnight); }
+.vroom h3{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 18px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.vroom h3 .m8-data{ font-size: 11px; color: var(--m8-ink-mute); }
+.vroom ul{ display: grid; gap: 4px; list-style: none; }
+.vroom li{ display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 8px; font-size: 14px; align-items: baseline; }
+.vroom li .m8-data{ font-size: 12px; color: var(--m8-orange-ink); }
+.omaps{ display: grid; grid-template-columns: 1fr 1fr; gap: var(--m8-sp-3); }
+.omap{ display: grid; gap: 8px; }
+.omap img{ width: 100%; height: auto; display: block; border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: #fff; }
+.omap figcaption{ font-size: 12px; color: var(--m8-ink-mute); }
+@media (max-width: 900px){ .vplan, .omaps{ grid-template-columns: 1fr; } }
+@media (max-width: 480px){ .vroom li{ grid-template-columns: 1fr; gap: 0; } }
+.vsvg .vsvg__road-t--v{ writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 4px; }
