@@ -635,8 +635,9 @@ html.m8-locked .gate{ display: grid; place-items: center; min-height: 100vh; pad
 
 /* ── 下載用大會流程圖（tools/schedule_images.sh 截圖） ── */
 .pcard{ margin: 0; background: var(--m8-orange); color: var(--m8-midnight); padding: 64px; display: grid; grid-template-rows: auto 1fr auto; gap: 40px; box-sizing: border-box; }
-.pcard--all{ width: 1920px; height: 1350px; }
-.pcard--day{ width: 1080px; height: 1350px; }
+html:has(> body.pcard){ background: #fff; }
+.pcard--all{ width: 1920px; min-height: 1350px; }
+.pcard--day{ width: 1080px; min-height: 1350px; }
 .pcard__head{ display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center; }
 .pcard__head .m8-data{ font-size: 22px; letter-spacing: .1em; }
 .pcard__head h1{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 84px; line-height: 1.05; }
@@ -654,9 +655,13 @@ html.m8-locked .gate{ display: grid; place-items: center; min-height: 100vh; pad
 .pcard .sitem > b{ font-size: 28px; }
 .pcard .sitem > small{ font-size: 18px; }
 .pcard .sitem__room{ font-size: 22px; }
-.pcard--day .sitem{ padding: 20px 36px; }
-.pcard--day .sitem > b{ font-size: 34px; }
-.pcard--day .sitem__top .m8-data, .pcard--day .sitem__room{ font-size: 26px; }
+.pcard--day .sitem{ padding: 14px 36px; gap: 2px; }
+.pcard--day .sitem > b{ font-size: 30px; }
+.pcard--day .sitem__top .m8-data, .pcard--day .sitem__room{ font-size: 24px; }
+.pcard--day{ padding: 56px 64px; gap: 28px; }
+.pcard--day .pcard__head h1{ font-size: 72px; }
+.pcard--all{ padding: 48px 64px; gap: 28px; }
+.pcard--all .sitem{ padding: 12px 28px; }
 .pcard__foot{ display: flex; justify-content: space-between; align-items: center; gap: 24px; font-family: var(--m8-font-tc); font-size: 22px; }
 .pcard__foot .m8-data{ font-size: 22px; letter-spacing: .1em; margin-left: auto; }
 html:not([lang^="zh"]) .vsvg .vsvg__hall-t{ font-size: 12px; }
