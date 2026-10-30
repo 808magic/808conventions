@@ -51,14 +51,17 @@ document.addEventListener('keydown', (ev) => {
   else if (menu && !menu.hidden) { menuBtn.click(); menuBtn.focus(); }
 });
 
-// 分頁籤（議程、嘉賓、參賽者；左右方向鍵可切換）
+// 分頁籤（大會流程、嘉賓、參賽者；左右方向鍵可切換）
 const tabs = [...document.querySelectorAll('[role="tab"]')];
 function selectTab(tab) {
   tabs.forEach((t) => {
     const on = t === tab;
     t.setAttribute('aria-selected', String(on));
     t.tabIndex = on ? 0 : -1;
-    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    const panel = document.getElementById(t.getAttribute('aria-controls'));
+    // 大會流程：桌機三天並排，只有手機版依天切換（用 class，不用 hidden）
+    if (panel.classList.contains('sday')) panel.classList.toggle('is-on', on);
+    else panel.hidden = !on;
   });
 }
 tabs.forEach((tab, i) => {

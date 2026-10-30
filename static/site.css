@@ -581,21 +581,82 @@ html.m8-locked .gate{ display: grid; place-items: center; min-height: 100vh; pad
 .vsvg__n path, .vsvg__n text{ fill: var(--m8-midnight); }
 .vsvg .vsvg__n text{ font-family: var(--m8-font-en); font-weight: 900; }
 .vplan__stack{ display: grid; gap: var(--m8-sp-2); }
+.vplan__stack .m8-btn{ justify-self: start; }
 .vplan__hall{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 22px; }
 .vfloor{ display: grid; grid-template-columns: 56px minmax(0, 1fr); border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); overflow: hidden; background: var(--m8-paper); }
 .vfloor__n{ background: var(--m8-midnight); color: var(--m8-orange); font: 900 22px/1 var(--m8-font-en); display: grid; place-items: center; }
 .vfloor__rooms{ display: grid; }
-.vroom{ padding: 14px 16px; display: grid; gap: 8px; }
+.vroom{ padding: 14px 16px; display: grid; gap: 2px; }
 .vroom + .vroom{ border-top: 2px dashed var(--m8-midnight); }
 .vroom h3{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 18px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .vroom h3 .m8-data{ font-size: 11px; color: var(--m8-ink-mute); }
-.vroom ul{ display: grid; gap: 4px; list-style: none; }
-.vroom li{ display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 8px; font-size: 14px; align-items: baseline; }
-.vroom li .m8-data{ font-size: 12px; color: var(--m8-orange-ink); }
 .omaps{ display: grid; grid-template-columns: 1fr 1fr; gap: var(--m8-sp-3); }
 .omap{ display: grid; gap: 8px; }
 .omap img{ width: 100%; height: auto; display: block; border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: #fff; }
 .omap figcaption{ font-size: 12px; color: var(--m8-ink-mute); }
 @media (max-width: 900px){ .vplan, .omaps{ grid-template-columns: 1fr; } }
-@media (max-width: 480px){ .vroom li{ grid-template-columns: 1fr; gap: 0; } }
-.vsvg .vsvg__road-t--v{ writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 4px; }
+.vsvg .vsvg__v{ writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 2px; }
+.vsvg__gate rect{ fill: var(--m8-orange); stroke: var(--m8-midnight); stroke-width: 2; }
+.vsvg .vsvg__gate text{ font-weight: 900; }
+.vsvg__walk{ stroke: var(--m8-midnight); stroke-width: 3; stroke-dasharray: 6 5; fill: none; }
+.vsvg__walk-h{ fill: var(--m8-midnight); }
+.vsvg .vsvg__note{ font-size: 13px; fill: var(--m8-ink-soft); }
+
+/* ── 大會流程：桌機三天並排，手機依天分頁 ── */
+.tabs--days{ display: none; }
+.sdays{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--m8-sp-3); align-items: start; }
+.sday{ border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-paper); overflow: hidden; }
+.sday__h{ background: var(--m8-midnight); color: var(--m8-orange); font-size: 15px; letter-spacing: .06em; padding: 14px 18px; }
+.sday__list{ display: grid; }
+.sitem{ display: grid; gap: 4px; padding: 14px 18px; border-bottom: 1px solid var(--m8-line); }
+.sitem:last-child{ border-bottom: 0; }
+.sitem__top{ display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.sitem__top .m8-data{ font-size: 14px; }
+.sitem > b{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 17px; line-height: 1.4; }
+.sitem > small{ font-size: 13px; color: var(--m8-ink-mute); line-height: 1.5; }
+.sitem .tag--signup{ justify-self: start; }
+.sitem__when{ display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.sitem__room{ font-family: var(--m8-font-tc); font-size: 14px; color: var(--m8-orange-ink); font-weight: 700; }
+.sextra{ margin-top: var(--m8-sp-3); border: 2px dashed var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-paper); }
+.sextra__h{ display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; padding: 14px 18px 0; }
+.sextra__h b{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 18px; }
+.sextra__h .m8-data{ font-size: 13px; color: var(--m8-ink-mute); }
+.sdl{ display: flex; justify-content: space-between; align-items: center; gap: var(--m8-sp-3); flex-wrap: wrap; }
+.sdl h2{ margin-bottom: 6px; }
+.sdl__btns{ display: flex; flex-wrap: wrap; gap: var(--m8-sp-2); }
+@media (max-width: 760px){
+  .tabs--days{ display: flex; }
+  .sdays{ grid-template-columns: 1fr; }
+  .tabs--days + .sdays .sday{ border-top-left-radius: 0; border-top-right-radius: 0; }
+  .sday:not(.is-on){ display: none; }
+  .tabs--days + .sdays .sday__h{ display: none; }
+  .sdl__btns .m8-btn{ flex: 1 1 40%; justify-content: center; }
+}
+
+/* ── 下載用大會流程圖（tools/schedule_images.sh 截圖） ── */
+.pcard{ margin: 0; background: var(--m8-orange); color: var(--m8-midnight); padding: 64px; display: grid; grid-template-rows: auto 1fr auto; gap: 40px; box-sizing: border-box; }
+.pcard--all{ width: 1920px; height: 1350px; }
+.pcard--day{ width: 1080px; height: 1350px; }
+.pcard__head{ display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center; }
+.pcard__head .m8-data{ font-size: 22px; letter-spacing: .1em; }
+.pcard__head h1{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 84px; line-height: 1.05; }
+.pcard__meta{ display: grid; gap: 6px; text-align: right; }
+.pcard__meta b{ font: 900 34px/1.1 var(--m8-font-en); }
+.pcard__meta span{ font-family: var(--m8-font-tc); font-weight: 700; font-size: 20px; }
+.pcard--day .pcard__head{ grid-template-columns: auto 1fr; }
+.pcard--day .pcard__meta{ grid-column: 1 / -1; text-align: left; }
+.pcard__days{ display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
+.pcard .sday{ border-width: 3px; }
+.pcard .sday__h{ font-size: 26px; padding: 20px 28px; }
+.pcard .sitem{ padding: 16px 28px; gap: 4px; }
+.pcard .sitem__top .m8-data{ font-size: 22px; }
+.pcard .tag{ font-size: 16px; line-height: 26px; padding: 2px 10px; }
+.pcard .sitem > b{ font-size: 28px; }
+.pcard .sitem > small{ font-size: 18px; }
+.pcard .sitem__room{ font-size: 22px; }
+.pcard--day .sitem{ padding: 20px 36px; }
+.pcard--day .sitem > b{ font-size: 34px; }
+.pcard--day .sitem__top .m8-data, .pcard--day .sitem__room{ font-size: 26px; }
+.pcard__foot{ display: flex; justify-content: space-between; align-items: center; gap: 24px; font-family: var(--m8-font-tc); font-size: 22px; }
+.pcard__foot .m8-data{ font-size: 22px; letter-spacing: .1em; margin-left: auto; }
+html:not([lang^="zh"]) .vsvg .vsvg__hall-t{ font-size: 12px; }
