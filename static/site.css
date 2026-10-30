@@ -662,3 +662,4 @@ html.m8-locked .gate{ display: grid; place-items: center; min-height: 100vh; pad
 html:not([lang^="zh"]) .vsvg .vsvg__hall-t{ font-size: 12px; }
 .vsvg .vsvg__t--s{ font-size: 12px; }
 .vsvg__loop{ fill: var(--m8-paper); stroke: var(--m8-midnight); stroke-width: 1.5; }
+.ticket__regular{ display: flex; align-items: baseline; gap: 8px; font: 700 15px/1.2 var(--m8-font-en); }
