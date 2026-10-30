@@ -81,11 +81,14 @@
 
 /* ── 多國語言字體 ── 英文 Urbanist、中文 Chiron GoRound TC 不支援的文字，用同風格的補充字體
    日文 Zen Maru Gothic（圓體）・韓文 Gothic A1・俄文 Jost（幾何，接近 Urbanist）
+   泰文 Prompt（幾何）・越南文 Be Vietnam Pro（幾何，含越南文聲調）・印尼文、菲律賓文用 Urbanist
    頁面需設定 <html lang="ja"> 等，並另外載入對應的 Google Fonts。 */
-html:lang(en), html:lang(es), html:lang(fr){ --m8-font-tc: 'Urbanist', 'Chiron GoRound TC', sans-serif; }
+html:lang(en), html:lang(es), html:lang(fr), html:lang(id), html:lang(fil){ --m8-font-tc: 'Urbanist', 'Chiron GoRound TC', sans-serif; }
 html:lang(ja){ --m8-font-en: 'Urbanist', 'Zen Maru Gothic', sans-serif; --m8-font-tc: 'Zen Maru Gothic', 'Urbanist', sans-serif; }
 html:lang(ko){ --m8-font-en: 'Urbanist', 'Gothic A1', sans-serif; --m8-font-tc: 'Gothic A1', 'Urbanist', sans-serif; }
 html:lang(ru){ --m8-font-en: 'Urbanist', 'Jost', sans-serif; --m8-font-tc: 'Jost', 'Urbanist', sans-serif; }
+html:lang(th){ --m8-font-en: 'Urbanist', 'Prompt', sans-serif; --m8-font-tc: 'Prompt', 'Urbanist', sans-serif; }
+html:lang(vi){ --m8-font-en: 'Be Vietnam Pro', sans-serif; --m8-font-tc: 'Be Vietnam Pro', sans-serif; }
 
 /* ─────────────────────────────────────────────────────────────────
    PRINT（印刷用，CSS 不會讀到）
