@@ -25,10 +25,13 @@
 <link rel="stylesheet" href="../static/tokens.css">
 <link rel="stylesheet" href="../static/guide.css">
 </head>
-<body class="guide" data-root="../">
+<body class="guide" data-root="../" data-lang="ko" data-langs="zh,en,ko,ja,es,fr,ru,th,vi,id,fil">
 <header class="gbar">
   <a class="gbar__home" href="index.html" aria-label="컨벤션 사이트"><img class="gbar__badge" src="../static/img/808-badge-night.svg" alt="" width="96" height="96"><b>808 가이드</b></a>
-  <button class="gbar__bell" type="button" data-open="remind" aria-label="알림"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4Z"/><path d="M10 21h4"/></svg></button>
+  <span class="gbar__btns">
+    <button class="gbar__lang" type="button" data-open="lang" aria-label="언어"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><b>KO</b></button>
+    <button class="gbar__bell" type="button" data-open="remind" aria-label="알림"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4Z"/><path d="M10 21h4"/></svg></button>
+  </span>
 </header>
 <div class="ginstall" hidden>
   <button type="button" class="ginstall__go" data-open="install">홈 화면에 추가하고 한 번에 열기 <i>→</i></button>
@@ -45,6 +48,13 @@
     <p class="gsheet__status" data-notify-status></p>
     <a class="gbtn gbtn--paper" href="808-convention-2027.ics" download>모두 캘린더에 추가</a>
     <p class="gsheet__note">가이드를 열어 두면 항상 알려 드립니다. 잠금 상태이거나 앱을 닫으면 알림이 오지 않을 수 있으니 캘린더에 추가하는 것이 가장 확실합니다.</p>
+    <button type="button" class="gbtn gbtn--line" data-close>닫기</button>
+  </div>
+</div>
+<div class="gsheet" id="sheet-lang" hidden role="dialog" aria-modal="true" aria-labelledby="lang-h">
+  <div class="gsheet__in">
+    <h2 id="lang-h">언어 · Language</h2>
+    <ul class="glangs"><li><a href="../guide.html" hreflang="zh" lang="zh">中文</a></li><li><a href="../en/guide.html" hreflang="en" lang="en">English</a></li><li><a href="../ko/guide.html" hreflang="ko" lang="ko" aria-current="true">한국어</a></li><li><a href="../ja/guide.html" hreflang="ja" lang="ja">日本語</a></li><li><a href="../es/guide.html" hreflang="es" lang="es">Español</a></li><li><a href="../fr/guide.html" hreflang="fr" lang="fr">Français</a></li><li><a href="../ru/guide.html" hreflang="ru" lang="ru">Русский</a></li><li><a href="../th/guide.html" hreflang="th" lang="th">ไทย</a></li><li><a href="../vi/guide.html" hreflang="vi" lang="vi">Tiếng Việt</a></li><li><a href="../id/guide.html" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="../fil/guide.html" hreflang="fil" lang="fil">Filipino</a></li></ul>
     <button type="button" class="gbtn gbtn--line" data-close>닫기</button>
   </div>
 </div>

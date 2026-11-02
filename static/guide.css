@@ -188,3 +188,19 @@ img{ max-width: 100%; display: block; }
   .gtoast:not([hidden]){ animation: gdrop .3s ease-out; }
   @keyframes gdrop{ from{ transform: translateY(-24px); opacity: 0; } }
 }
+
+/* 語言切換 */
+.gbar__btns{ display: flex; gap: 10px; }
+.gbar__lang{
+  height: 56px; padding: 0 14px 0 10px; border-radius: 28px; border: 2px solid var(--m8-midnight); background: var(--m8-paper);
+  display: flex; align-items: center; gap: 6px; box-shadow: 3px 3px 0 var(--m8-midnight); cursor: pointer;
+}
+.gbar__lang svg{ width: 26px; height: 26px; fill: none; stroke: var(--m8-midnight); stroke-width: 2; }
+.gbar__lang b{ font-family: var(--m8-font-data); font-weight: 500; font-size: 16px; }
+.glangs{ list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.glangs a{
+  display: flex; align-items: center; justify-content: center; min-height: 60px; padding: 8px; text-align: center;
+  border: 2px solid var(--m8-midnight); border-radius: 8px; background: var(--m8-paper); font-size: 19px; font-weight: 700; text-decoration: none;
+}
+.glangs a[aria-current]{ background: var(--m8-orange); font-weight: 900; }
+html:lang(th) .glangs a, html:lang(vi) .glangs a{ font-family: var(--m8-font-en); }

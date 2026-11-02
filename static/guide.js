@@ -1,4 +1,28 @@
 // 808 現場導覽：時程、嘉賓、Dealer 三頁，場次開始提醒，加到主畫面。資料由 build.py 嵌在 #gdata。
+
+// 語言：QR code 連到中文版；第一次打開時依手機語言自動換成對應語言版（自己選過就照選的）
+(function pickLang() {
+  const here = document.body.dataset.lang;
+  const langs = document.body.dataset.langs.split(',');
+  let saved = null;
+  try { saved = localStorage.getItem('m8g-lang'); } catch (e) { /* 無痕模式 */ }
+  document.querySelectorAll('.glangs a').forEach((a) => a.addEventListener('click', () => {
+    try { localStorage.setItem('m8g-lang', a.getAttribute('hreflang')); } catch (e) { /* 無痕模式 */ }
+    a.href += location.search + location.hash;
+  }));
+  if (here !== langs[0]) return;
+  let want = saved;
+  if (!want) {
+    for (const l of navigator.languages || [navigator.language]) {
+      const code = (l || '').toLowerCase();
+      if (code.startsWith('zh')) { want = langs[0]; break; }
+      const hit = langs.find((x) => code === x || code.startsWith(x + '-') || (x === 'fil' && code.startsWith('tl')));
+      if (hit) { want = hit; break; }
+    }
+    if (!want) want = 'en';
+  }
+  if (want && want !== here && langs.includes(want)) location.replace(`${want}/guide.html${location.search}${location.hash}`);
+})();
 const D = JSON.parse(document.getElementById('gdata').textContent);
 const t = (k, v) => (D.t[k] || '').replace(/\{(\w+)\}/g, (_, x) => (v && x in v ? v[x] : ''));
 const main = document.getElementById('gmain');
