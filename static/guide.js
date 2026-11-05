@@ -117,11 +117,12 @@ function renderSchedule() {
           h('b', null, s.title),
           h('span', { class: 'gitem__where' }, where(s)))));
   }));
-  return [nowCard(), chips, list];
+  const news = D.news ? h('a', { class: 'gnews', href: D.news.link || '#' }, h('span', null, t('h_news')), h('b', null, D.news.title)) : '';
+  return [news, nowCard(), chips, list];
 }
 
 function sectionDiagram(rid, inhall, only) {
-  if (!inhall) return h('p', { class: 'gnote' }, t('g_other_bldg'), ' ', h('a', { href: D.root + 'venue.html' }, '→'));
+  if (!inhall) return h('p', { class: 'gnote' }, t('g_other_bldg'), ' ', h('a', { href: 'venue.html' }, '→'));
   return h('div', { class: 'gsect', 'aria-label': t('g_section') },
     h('p', { class: 'gsect__hall' }, D.hall),
     D.levels.map((lv) => {
@@ -159,7 +160,11 @@ function renderSession(s) {
       h('dt', null, t('g_when')), h('dd', null, h('b', null, s.time), h('span', null, dayShort(s.day))),
       h('dt', null, t('g_where')), h('dd', null, h('b', null, where(s)), s.hall ? h('span', null, s.hall) : '')),
     s.note ? h('p', { class: 'gnote' }, s.note) : '',
-    s.signup ? h('a', { class: 'gbtn gbtn--paper', href: D.root + s.signup }, t('signup'), ' →') : '',
+    s.rules.length ? h('ul', { class: 'grules' }, s.rules.map((x) => h('li', null, x))) : '',
+    s.rules.length && D.apply_dates.length ? h('section', { class: 'gblock' }, h('h2', null, t('h_apply')),
+      h('ul', { class: 'ghours' }, D.apply_dates.map((d) => h('li', null, h('span', null, d.label), h('b', null, d.date)))),
+      h('a', { class: 'gbtn gbtn--paper', href: 'contestants.html#apply' }, t('apply_more'), ' →')) : '',
+    s.signup ? h('a', { class: 'gbtn gbtn--paper', href: s.signup }, t('signup'), ' →') : '',
     s.has_ppl ? h('section', { class: 'gblock' }, h('h2', null, s.ppl),
       ppl.length ? h('ul', { class: 'gpeople' }, ppl.map(personRow)) : h('p', { class: 'gnote' }, t('g_ppl_tba'))) : '',
     s.start ? h('button', {
@@ -236,6 +241,7 @@ function renderDealers() {
       out.push(h('section', { class: 'gblock' },
         h('h2', null, f ? h('span', { class: 'gfloor' }, f) : t('g_floor_tba'), f ? ' ' + D.dealer_room : ''),
         h('ul', { class: 'gdealers' }, list.map(([d, i]) => h('li', null, h('a', { href: '#d=' + i },
+          d.logo ? h('img', { class: 'gdealers__logo', src: d.logo, alt: '', loading: 'lazy' }) : '',
           h('b', null, d.name), d.booth ? h('span', { class: 'gbooth' }, d.booth) : ''))))));
     }
   }
@@ -246,15 +252,15 @@ function renderDealers() {
 function renderDealer(d) {
   return [
     back(),
+    d.logo ? h('img', { class: 'gdealer__logo', src: d.logo, alt: '' }) : '',
     h('h1', { class: 'gh1' }, d.name),
     d.region ? h('p', { class: 'gsub' }, d.region) : '',
     h('dl', { class: 'gfacts' },
-      h('dt', null, t('g_where')), h('dd', null, h('b', null, d.floor ? h('span', { class: 'gfloor' }, d.floor) : t('g_floor_tba'),
-        ' ', D.dealer_room), ''),
+      h('dt', null, t('g_where')), h('dd', null, h('b', null, d.floor ? [h('span', { class: 'gfloor' }, d.floor), ' ', D.dealer_room] : t('g_floor_tba')), ''),
       d.booth ? h('dt', null, t('g_booth')) : '', d.booth ? h('dd', null, h('b', null, d.booth)) : ''),
     d.products ? h('p', { class: 'gbio' }, d.products) : '',
     d.url ? h('a', { class: 'gbtn gbtn--paper', href: d.url, target: '_blank', rel: 'noopener' }, t('website'), ' ↗') : '',
-    h('section', { class: 'gblock' }, h('h2', null, t('g_section')), sectionDiagram('corridor', true, d.floor), plans(d.floor ? [d.floor] : [])),
+    d.floor ? h('section', { class: 'gblock' }, h('h2', null, t('g_section')), sectionDiagram('corridor', true, d.floor), plans([d.floor])) : '',
   ];
 }
 

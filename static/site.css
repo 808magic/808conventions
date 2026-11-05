@@ -387,9 +387,9 @@ a.gcard:hover .portrait{ box-shadow: 0 0 0 6px var(--m8-paper), 0 0 0 8px var(--
 .dfilter input:focus{ outline: none; box-shadow: var(--m8-stack-sm); }
 .dfilter__count{ font-size: 13px; color: var(--m8-ink-soft); }
 .dgrid{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--m8-sp-3); }
-.dcard{ display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: var(--m8-sp-2); align-items: start; padding: var(--m8-sp-2); border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-paper); }
-.dcard__logo{ width: 72px; height: 72px; border-radius: 50%; overflow: hidden; background: var(--m8-paper); box-shadow: inset 0 0 0 2px var(--m8-line); display: grid; place-items: center; }
-.dcard__logo img{ width: 78%; height: 78%; object-fit: contain; }
+.dcard{ display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: var(--m8-sp-2); align-items: start; padding: var(--m8-sp-2); border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-paper); }
+.dcard__logo{ width: 112px; height: 80px; border-radius: 8px; overflow: hidden; background: var(--m8-paper); box-shadow: inset 0 0 0 2px var(--m8-line); display: grid; place-items: center; }
+.dcard__logo img{ width: 88%; height: 88%; object-fit: contain; }
 .dcard__initial{ width: 100%; height: 100%; display: grid; place-items: center; background: var(--m8-cream); font: 900 28px/1 var(--m8-font-en); color: var(--m8-orange-ink); text-transform: uppercase; }
 .dcard__body{ display: grid; gap: 2px; min-width: 0; }
 .dcard__body b{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 17px; line-height: 1.35; }
@@ -402,7 +402,7 @@ a.gcard:hover .portrait{ box-shadow: 0 0 0 6px var(--m8-paper), 0 0 0 8px var(--
 .dcard__booth b{ font: 900 15px/1.1 var(--m8-font-en); }
 .dempty{ padding: var(--m8-sp-4); text-align: center; color: var(--m8-ink-soft); }
 @media (max-width: 1000px){ .dgrid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px){ .dgrid{ grid-template-columns: 1fr; } .dcard{ grid-template-columns: 56px minmax(0, 1fr) auto; } .dcard__logo{ width: 56px; height: 56px; } }
+@media (max-width: 640px){ .dgrid{ grid-template-columns: 1fr; } .dcard{ grid-template-columns: 96px minmax(0, 1fr) auto; } .dcard__logo{ width: 96px; height: 72px; } }
 
 /* ── 交通住宿子選單 ── */
 .subnav{ background: var(--m8-paper); border-bottom: 2px solid var(--m8-midnight); }
@@ -693,6 +693,7 @@ a.news__row:hover b{ color: var(--m8-orange-ink); }
   .news__row .arrow{ grid-column: 3; grid-row: 1 / 3; }
 }
 .news__kind--guest{ background: var(--m8-paper); color: var(--m8-midnight); box-shadow: inset 0 0 0 1.5px var(--m8-midnight); }
+.news__kind--contest{ background: var(--m8-midnight); color: var(--m8-paper); }
 
 /* 參賽者頁：頒獎典禮（往年照片＋敬請期待），底部是 40% 透明度的劍剪影 */
 .ceremony{ position: relative; overflow: hidden; padding-bottom: 360px; }
@@ -715,3 +716,14 @@ a.news__row:hover b{ color: var(--m8-orange-ink); }
   .ceremony{ padding-bottom: 280px; }
   .ceremony::after{ width: 200px; height: 270px; }
 }
+
+/* 比賽頁：報名辦法 */
+.capply{ margin-bottom: var(--m8-sp-4); scroll-margin-top: 96px; }
+.capply__in{ display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--m8-sp-2); }
+.capply__steps{ list-style: decimal; margin: 0; padding: var(--m8-sp-2) var(--m8-sp-2) var(--m8-sp-2) calc(var(--m8-sp-2) + 1.4em); display: grid; gap: 8px; border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-paper); font-weight: 700; overflow-wrap: anywhere; }
+.capply__dates{ list-style: none; margin: 0; padding: 0; display: grid; gap: var(--m8-sp-2); }
+.capply__dates li{ display: grid; gap: 2px; padding: var(--m8-sp-2); border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-orange); }
+.capply__dates span{ font-size: 14px; font-weight: 700; }
+.capply__dates b{ font-size: 24px; font-weight: 500; }
+.capply__notes{ list-style: disc; margin: var(--m8-sp-2) 0 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: 14px; color: var(--m8-ink-soft); }
+@media (max-width: 720px){ .capply__in{ grid-template-columns: 1fr; } }
