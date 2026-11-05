@@ -1,5 +1,5 @@
 // 808 導覽的 service worker：沒網路時也能打開導覽。頁面、程式、樣式先抓網路（拿最新議程），失敗才用快取；圖片和字體先用快取。
-const CACHE = 'm8-guide-9f23d244c1';
+const CACHE = 'm8-guide-362b1b8fde';
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (ev) => {

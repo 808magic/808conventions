@@ -259,7 +259,6 @@ function renderDealer(d) {
       h('dt', null, t('g_where')), h('dd', null, h('b', null, d.floor ? [h('span', { class: 'gfloor' }, d.floor), ' ', D.dealer_room] : t('g_floor_tba')), ''),
       d.booth ? h('dt', null, t('g_booth')) : '', d.booth ? h('dd', null, h('b', null, d.booth)) : ''),
     d.products ? h('p', { class: 'gbio' }, d.products) : '',
-    d.url ? h('a', { class: 'gbtn gbtn--paper', href: d.url, target: '_blank', rel: 'noopener' }, t('website'), ' ↗') : '',
     d.floor ? h('section', { class: 'gblock' }, h('h2', null, t('g_section')), sectionDiagram('corridor', true, d.floor), plans([d.floor])) : '',
   ];
 }
