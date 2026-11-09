@@ -388,9 +388,10 @@ a.gcard:hover .portrait{ box-shadow: 0 0 0 6px var(--m8-paper), 0 0 0 8px var(--
 .dfilter__count{ font-size: 13px; color: var(--m8-ink-soft); }
 .dgrid{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--m8-sp-3); }
 .dcard{ display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: var(--m8-sp-2); align-items: start; padding: var(--m8-sp-2); border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-paper); }
-.dcard__logo{ width: 112px; height: 80px; border-radius: 8px; overflow: hidden; background: var(--m8-paper); box-shadow: inset 0 0 0 2px var(--m8-line); display: grid; place-items: center; }
-.dcard__logo img{ width: 88%; height: 88%; object-fit: contain; }
-.dcard__initial{ width: 100%; height: 100%; display: grid; place-items: center; background: var(--m8-cream); font: 900 28px/1 var(--m8-font-en); color: var(--m8-orange-ink); text-transform: uppercase; }
+.dcard__logo{ width: 112px; height: 80px; padding: 8px; border-radius: 8px; overflow: hidden; background: var(--m8-paper); box-shadow: inset 0 0 0 2px var(--m8-line); display: flex; align-items: center; justify-content: center; }
+/* logo 整張縮進框內，不裁切 */
+.dcard__logo img{ display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.dcard__initial{ width: calc(100% + 16px); height: calc(100% + 16px); margin: -8px; display: grid; place-items: center; background: var(--m8-cream); font: 900 28px/1 var(--m8-font-en); color: var(--m8-orange-ink); text-transform: uppercase; }
 .dcard__body{ display: grid; gap: 2px; min-width: 0; }
 .dcard__body b{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 17px; line-height: 1.35; }
 .dcard__en{ font-size: 13px; color: var(--m8-ink-soft); }
@@ -727,3 +728,17 @@ a.news__row:hover b{ color: var(--m8-orange-ink); }
 .capply__dates b{ font-size: 24px; font-weight: 500; }
 .capply__notes{ list-style: disc; margin: var(--m8-sp-2) 0 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: 14px; color: var(--m8-ink-soft); }
 @media (max-width: 720px){ .capply__in{ grid-template-columns: 1fr; } }
+
+/* 首頁感謝名單：橫式 logo 在上；正方形、直式 logo（.tcard--side）在左、文字在右 */
+.tgrid{ list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--m8-sp-2); }
+.tcard{ display: grid; align-content: start; justify-items: center; text-align: center; gap: 10px; padding: var(--m8-sp-2); border: 2px solid var(--m8-midnight); border-radius: var(--m8-radius); background: var(--m8-paper); }
+.tcard__logo{ width: 100%; height: 104px; padding: 12px; border-radius: 8px; box-shadow: inset 0 0 0 2px var(--m8-line); display: flex; align-items: center; justify-content: center; }
+.tcard__logo img{ display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.tcard__logo--dark{ background: var(--m8-midnight); box-shadow: none; }
+.tcard__text{ display: grid; gap: 2px; justify-items: inherit; }
+.tcard--side{ grid-template-columns: 104px minmax(0, 1fr); align-items: center; justify-items: start; text-align: left; gap: var(--m8-sp-2); }
+.tcard--side .tcard__logo{ width: 104px; }
+.tcard b{ font-family: var(--m8-font-tc); font-weight: 900; font-size: 17px; line-height: 1.35; }
+.tcard__en{ font-size: 13px; color: var(--m8-ink-soft); }
+.tcard__role{ font-size: 12px; font-weight: 800; color: var(--m8-orange-ink); }
+@media (max-width: 640px){ .tgrid{ grid-template-columns: 1fr; } }
