@@ -99,3 +99,18 @@ if (dq) {
     none.hidden = n > 0;
   });
 }
+
+// 歷屆回顧的 YouTube 影片：點了才載入播放器（youtube-nocookie），之前只顯示本站的封面圖
+document.querySelectorAll('.vid__yt').forEach((a) => {
+  a.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(a.dataset.yt) + '?autoplay=1&rel=0';
+    f.title = a.getAttribute('aria-label');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    f.className = 'vid__frame';
+    a.replaceWith(f);
+    f.focus();
+  });
+});
